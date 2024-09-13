@@ -13,3 +13,13 @@ var plusOne = function(digits) {
     digits.unshift(1);
     return digits;
 };
+
+
+Better:
+var plusOne = function(digits) {
+    let number = BigInt(digits.join(''));
+    number = number + BigInt(1)
+return Array.from(String(number), BigInt);
+};
+
+
