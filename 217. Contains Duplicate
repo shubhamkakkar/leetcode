@@ -1,0 +1,8 @@
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var containsDuplicate = function(nums) {
+    const uniqueElements = [...new Set([...nums])];
+    return uniqueElements.length !== nums.length
+};
