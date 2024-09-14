@@ -1,0 +1,26 @@
+/**
+ * @param {number[]} nums
+ * @return {string[]}
+ */
+var summaryRanges = function(nums) {
+  let lastElement = undefined;
+
+  const results = [];
+
+
+  for (let i =0 ; i < nums.length; i++) {
+    if (i === 0) {
+        results.push(`${nums[i]}`);
+        lastElement = nums[i];
+    } else {
+        if (nums[i]-1  === nums[i-1]) {
+            results[results.length -1] = `${lastElement}->${nums[i]}` 
+        } else {
+        results.push(`${nums[i]}`);
+         lastElement = nums[i];
+        }
+    }
+  }
+  return results;
+
+};
