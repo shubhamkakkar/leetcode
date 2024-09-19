@@ -1,0 +1,28 @@
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var findDisappearedNumbers = function(nums) {
+    const map = new Map();
+
+    nums.forEach(num => {
+        if (!map.has(num)) {
+            map.set(num, 0)
+        }
+
+            map.set(num, map.get(num)+1);
+    })
+    let missing = []
+    for (let i = 1; i <= nums.length; i++) {
+        if (!map.has(i)) {
+         missing.push(i);   
+        }
+    }
+
+    return missing;
+};
+
+
+
+//// Better to be done
+
