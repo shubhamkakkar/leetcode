@@ -1,0 +1,30 @@
+/**
+ * @param {number[]} g
+ * @param {number[]} s
+ * @return {number}
+ */
+var findContentChildren = function(g, s) {
+    const sortedGreeds = g.sort((a,b) => b-a);
+
+    const sortedCookies = s.sort((a,b) => b-a);
+
+    const cookieMap = new Map();
+
+    let count = 0;
+
+    let i = 0;
+    let j = 0
+
+    while (j < sortedCookies.length && i < sortedGreeds.length) {
+        if (sortedCookies[j] >= sortedGreeds[i]) {
+            count++;
+            j++;
+        }
+        i++;
+    }
+
+
+
+    return count;
+    
+};
