@@ -1,0 +1,32 @@
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var nextGreaterElement = function (nums1, nums2) {
+    const map = new Map();
+    
+    // Create a map that stores the index of each element in nums2
+    nums2.forEach((el, i) => {
+        map.set(el, i);
+    });
+
+    const response = [];
+
+    nums1.forEach((el) =>x {
+        const indexInNums2 = map.get(el); // Find the index of the element in nums2
+        let nextGreater = -1;
+
+        // Search for the next greater element in nums2 starting from indexInNums2 + 1
+        for (let i = indexInNums2 + 1; i < nums2.length; i++) {
+            if (nums2[i] > el) {
+                nextGreater = nums2[i];
+                break;
+            }
+        }
+
+        response.push(nextGreater); // Add the next greater element or -1 if none found
+    });
+
+    return response;
+};
