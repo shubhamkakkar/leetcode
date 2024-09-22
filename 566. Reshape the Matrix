@@ -1,0 +1,33 @@
+/**
+ * @param {number[][]} mat
+ * @param {number} r
+ * @param {number} c
+ * @return {number[][]}
+ */
+var matrixReshape = function (mat, r, c) {
+    const ogi = mat.length;
+    const ogj = mat[0].length;
+
+    if (ogi * ogj !== r * c) {
+        return mat;
+    }
+
+    let m = 0;
+    let n = 0;
+
+    const emptyBlock = new Array(c).fill(1)
+
+    let newMat = Array.from({ length: r }, () => new Array(c));
+
+    for (let i = 0; i < ogi; i++) {
+        for (let j = 0; j < ogj; j++) {
+            if (n === c) {
+                m += 1;
+                n = 0;
+            }
+            newMat[m][n] = mat[i][j]
+            n += 1;
+        }
+    }
+    return newMat
+};
