@@ -1,0 +1,63 @@
+/**
+ * @param {string[]} words
+ * @return {string[]}
+ */
+var findWords = function (words) {
+    const r1 = "qwertyuiop";
+    const r2 = "asdfghjkl";
+    const r3 = "zxcvbnm";
+
+    const mapFn = (map, row) => {
+        row.split('').forEach((el, i) => {
+            if (!map.has(el)) {
+                map.set(el, 0)
+            }
+
+            map.set(el, map.get(el) + 1);
+        })
+
+        return map;
+    }
+
+    const mapr1 = mapFn(new Map(), r1);
+    const mapr2 = mapFn(new Map(), r2);
+    const mapr3 = mapFn(new Map(), r3);
+
+    const response = [];
+
+    const determineRow = (element) => {
+        if (mapr1.has(element)) {
+            return '1'
+        }
+        if (mapr2.has(element)) {
+            return '2'
+        }
+        if (mapr3.has(element)) {
+            return '3'
+        }
+    }
+
+    words.forEach(word => {
+        const wordEls = [...new Set(word.split('').map(el => el.toLowerCase()))];
+        let i = 0;
+        let n = wordEls.length;
+        if (n === 1) {
+            response.push(word);
+        } else {
+            for (i = 1; i <= n-1; i++) {
+                const el = wordEls[i];
+                const prevEl = wordEls[i - 1];
+                if (determineRow(el) !== determineRow(prevEl)) {
+                    break
+                }
+                if (i === n-1) {
+                    response.push(word);
+                }
+            }
+        }
+    })
+
+    return response;
+
+
+};
