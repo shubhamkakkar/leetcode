@@ -1,0 +1,33 @@
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var findMaxAverage = function(nums, k) {
+    if (nums.length === k) {
+        const sum = nums.reduce((a, c) => a+c, 0);
+        const avg = sum/k;
+
+        return parseFloat(avg.toFixed(5));
+    }
+
+    let sum = 0;
+
+    for(let i = 0; i < k ; i++) {
+        sum+= nums[i];
+    }
+
+    let maxSum = sum;
+
+    let n = nums.length;
+
+    for(let i = k; i < n ; i++) {
+        sum = sum - nums[i-k] + nums[i]
+        if (sum > maxSum) {
+            maxSum = sum;
+        }
+    }
+
+
+    return parseFloat((maxSum/k).toFixed(5));
+};
