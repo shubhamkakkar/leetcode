@@ -1,0 +1,42 @@
+/**
+ * @param {string[]} list1
+ * @param {string[]} list2
+ * @return {string[]}
+ */
+var findRestaurant = function (list1, list2) {
+    const n1 = list1.length;
+    const n2 = list2.length;
+
+    const listForHashMap = n1 > n2 ? list2 : list1;
+    const listForLoopMap = n1 > n2 ? list1 : list2;
+
+    const map = new Map();
+
+    let minSum = undefined;
+
+    listForHashMap.forEach((el, i) => {
+        if (!map.has(el)) {
+            map.set(el, i)
+        }
+    })
+
+    let minSumMap = [];
+    listForLoopMap.forEach((el, i) => {
+        if (map.has(el)) {
+            if (isNaN(minSum)) {
+                minSum = map.get(el) + i;
+                minSumMap.push(el);
+            } else {
+                let sum = map.get(el) + i;
+                if (sum < minSum) {
+                    minSum = sum;
+                    minSumMap = [el];
+                } else if (sum === minSum) {
+                    minSumMap.push(el);
+                }
+
+            }
+        }
+    })
+    return minSumMap;
+};
