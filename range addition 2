@@ -1,0 +1,18 @@
+var maxCount = function(m, n, ops) {
+    if (!ops.length) {
+        return m * n;
+    }
+
+    // Initialize minRow and minCol to the original matrix size
+    let minRow = m;
+    let minCol = n;
+
+    // Loop through each operation
+    for (let [row, col] of ops) {
+        minRow = Math.min(minRow, row);
+        minCol = Math.min(minCol, col);
+    }
+
+    // The result is the area of the intersection of all operations
+    return minRow * minCol;
+};
