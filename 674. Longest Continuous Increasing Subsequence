@@ -1,0 +1,27 @@
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findLengthOfLCIS = function(nums) {
+   let count = 1;
+   let maxCount = 1;
+   let l = 0;
+   let r = l+1;
+
+   while(r < nums.length) {
+        if (nums[r]>nums[l]) {
+            count+=1;
+        } else {
+            count =1 ;
+        }
+
+        if (count > maxCount) {
+            maxCount = count
+        }
+
+        l++;
+        r++;
+   }
+
+   return maxCount; 
+};
