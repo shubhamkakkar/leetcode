@@ -1,0 +1,29 @@
+/**
+ * @param {string[]} operations
+ * @return {number}
+ */
+var calPoints = function (operations) {
+    let op = [];
+    let sum = 0;
+    operations.forEach((el) => {
+        if (el === "D") {
+            const lastEl = op[op.length - 1];
+            op.push(lastEl * 2)
+            sum += lastEl * 2;
+
+        } else if (el === "C") {
+            const popedEl = op.pop();
+            sum -= popedEl;
+        } else if (el === "+") {
+            const lastEl = op[op.length - 1];
+            const secondLastEl = op[op.length - 2];
+            op.push(lastEl + secondLastEl)
+            sum += (lastEl + secondLastEl);
+        } else {
+            op.push(Number(el));
+            sum += Number(el);
+        }
+    })
+
+    return sum;
+};
