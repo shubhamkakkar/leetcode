@@ -1,0 +1,12 @@
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var findErrorNums = function(nums) {
+    const sort = nums.sort((a,b) => a-b);
+    for (let i = 0; i < sort.length; i++) {
+        if(i+1 !== sort[i]) {
+            return [sort[i], i+1]
+        }
+    }
+};
