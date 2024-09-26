@@ -1,0 +1,23 @@
+/**
+ * @param {string[]} operations
+ * @return {number}
+ */
+var calPoints = function (operations) {
+    let op = [];
+    operations.forEach((el) => {
+        if (el === "D") {
+            const lastEl = op[op.length - 1];
+            op.push(lastEl * 2)
+        } else if (el === "C") {
+            op.pop();
+        } else if (el === "+") {
+            const lastEl = op[op.length - 1];
+            const secondLastEl = op[op.length - 2];
+            op.push(lastEl + secondLastEl)
+        } else {
+            op.push(Number(el));
+        }
+    })
+
+    return op.reduce((a,b) => a+b, 0)
+};
