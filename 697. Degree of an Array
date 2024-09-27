@@ -1,0 +1,42 @@
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findShortestSubArray = function (nums) {
+    const frequency = new Map();
+    const degreeMap = new Map();
+
+    let degree = 0;
+    let maxDegreeElMap = new Map();
+
+    nums.forEach((el, i) => {
+        if (!frequency.has(el)) {
+            frequency.set(el, []);
+        }
+
+        const elAr = frequency.get(el);
+        const elLength = elAr.push(i);
+
+        // const elDegree = frequency.get(el)+1;
+        frequency.set(el, elAr);
+
+
+        degree = Math.max(degree, elLength);
+
+    })
+
+    if (degree === 1) {
+        return 1;
+    }
+
+    let minLength = nums.length;
+
+    for (let valueAr of frequency.values()) {
+        if (valueAr.length === degree) {
+            minLength = Math.min(minLength, valueAr[valueAr.length-1] - valueAr[0] + 1)
+        }
+    }
+
+    return minLength;
+        
+};
