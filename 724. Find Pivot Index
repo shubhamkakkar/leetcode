@@ -1,0 +1,24 @@
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var pivotIndex = function (nums) {
+    const length = nums.length;
+    const sum = nums.reduce((a, b) => a + b, 0);
+
+    let i = 0;
+    let l = 0;
+    let r = sum;
+    while (i < length) {
+
+        r -= nums[i];
+        console.log(i, nums[i], l, r);
+        if (l === r) {
+            return i
+        }
+        l += nums[i];
+        i++;
+    }
+
+    return -1;
+};
