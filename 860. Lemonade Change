@@ -1,0 +1,56 @@
+/**
+ * @param {number[]} bills
+ * @return {boolean}
+ */
+var lemonadeChange = function (bills) {
+    const billMap = new Map();
+
+    let sum = 0;
+
+
+    for (let i = 0; i < bills.length; i++) {
+        const amountReceived = bills[i];
+        if (amountReceived === 5) {
+            sum += (amountReceived);
+            billMap.set(amountReceived, (billMap.get(amountReceived) ?? 0) + 1);
+        }
+
+        if ((amountReceived-5) > sum) {
+            return false;
+        }
+
+
+
+        let canProcessThisOrderWithBills = true;
+
+        if (amountReceived === 20) {
+            if (billMap.get(10) >= 1 && billMap.get(5) >= 1) {
+                sum += (amountReceived - 5);
+                billMap.set(10, billMap.get(10) - 1)
+                billMap.set(5, billMap.get(5) - 1);
+                billMap.set(amountReceived, (billMap.get(amountReceived) ?? 0) + 1);
+            } else if (billMap.get(5) >= 3) {
+                sum += (amountReceived - 5);
+                billMap.set(5, billMap.get(5) - 3);
+                billMap.set(amountReceived, (billMap.get(amountReceived) ?? 0) + 1);
+            } else {
+                canProcessThisOrderWithBills = false;
+            }
+        } else if (amountReceived === 10) {
+            if (billMap.get(5) >= 1) {
+                sum += (amountReceived - 5);
+                billMap.set(5, billMap.get(5) - 1);
+                billMap.set(amountReceived, (billMap.get(amountReceived) ?? 0) + 1);
+            } else {
+                canProcessThisOrderWithBills = false;
+            }
+
+        }
+
+        if (!canProcessThisOrderWithBills) {
+            return false;
+        }
+    }
+
+    return true
+};
