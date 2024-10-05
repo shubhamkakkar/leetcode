@@ -1,0 +1,28 @@
+var checkValidString = function(s) {
+    let low = 0; // Minimum possible balance
+    let high = 0; // Maximum possible balance
+
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] === '(') {
+            low++;  // '(' adds one to the possible balance
+            high++;
+        } else if (s[i] === ')') {
+            low--;  // ')' decreases one from the possible balance
+            high--;
+        } else if (s[i] === '*') {
+            low--;  // '*' can act as ')', so decrease low
+            high++; // '*' can act as '(', so increase high
+        }
+
+        if (high < 0) {
+            // If high goes negative, there's no way to balance the string
+            return false;
+        }
+
+        // low should never be negative because we can't have more ')' than '('
+        low = Math.max(low, 0);
+    }
+
+    // At the end, low must be 0 for the string to be balanced
+    return low === 0;
+};
