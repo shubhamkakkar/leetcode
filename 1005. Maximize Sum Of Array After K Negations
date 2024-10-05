@@ -1,0 +1,29 @@
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var largestSumAfterKNegations = function (nums, k) {
+    let sorted = nums.sort((a, b) => a - b);
+
+
+    let i = 0;
+    while (i < sorted.length && k > 0) {
+        if (sorted[i] < 0) {
+            sorted[i] = -1 * sorted[i];
+            k--;
+        }
+        i++;
+    }
+    console.log({ k, sorted })
+    if (k % 2 !== 0) {
+        sorted = sorted.sort((a, b) => a - b);
+        sorted[0] = -1 * sorted[0];
+    }
+
+
+    sum = sorted.reduce((a, b) => a + b, 0);
+    return sum;
+
+
+};
