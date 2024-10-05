@@ -1,0 +1,35 @@
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+
+const isPalindrome = (str) => {
+    for (let i = 0; i < Math.floor(str.length / 2); i++) {
+        if (str[i] !== str[str.length - 1 - i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+var validPalindrome = function (s) {
+    const isAlreadyValid = isPalindrome(s);
+    if (isAlreadyValid) {
+        return true;
+    }
+
+    // Try removing one character at a time from either side
+    let left = 0;
+    let right = s.length - 1;
+
+    while (left < right) {
+        if (s[left] !== s[right]) {
+            // Check if removing one character from either side creates a palindrome
+            return isPalindrome(s.slice(left + 1, right + 1)) || isPalindrome(s.slice(left, right));
+        }
+        left++;
+        right--;
+    }
+
+    return true;
+};
