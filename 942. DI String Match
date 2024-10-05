@@ -1,0 +1,28 @@
+/**
+ * @param {string} s
+ * @return {number[]}
+ */
+var diStringMatch = function(s) {
+    let max = s.length;
+    let min = 0;
+
+    const op = [];
+    let i = 0;
+    while (i <= s.length) {
+        if (s[i] === "I") {
+            op.push(min);
+            min++;
+        }
+
+        if (s[i] === "D") {
+            op.push(max);
+            max--;
+        }
+
+        i++;
+    }
+
+    op.push(min)
+
+    return op
+};
