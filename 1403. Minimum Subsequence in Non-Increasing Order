@@ -1,0 +1,21 @@
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var minSubsequence = function(nums) {
+    const sorted = nums.sort((a,b) => b-a);
+    let totalSum = sorted.reduce((a,b) => a+b);
+    let subArr = [];
+    let subArrSum = 0;
+    for (let i = 0; i < sorted.length; i++) {
+        if (subArrSum > totalSum) {
+            return subArr;
+        }
+
+        const el = sorted[i];
+        totalSum -= el;
+        subArr.push(el);
+        subArrSum += el;
+    }
+    return sorted;  
+};
