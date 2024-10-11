@@ -1,0 +1,22 @@
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var balancedStringSplit = function(s) {
+    let sum = 0;
+    let count = 0;
+    s.split('').forEach(el => {
+        if (el === 'R') {
+            sum += 1
+        }
+        if (el === 'L') {
+            sum += -1
+        }
+
+        if (sum === 0) {
+            count++;
+        }
+    })
+
+    return count;
+};
