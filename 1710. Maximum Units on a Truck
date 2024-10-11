@@ -1,0 +1,24 @@
+/**
+ * @param {number[][]} boxTypes
+ * @param {number} truckSize
+ * @return {number}
+ */
+var maximumUnits = function(boxTypes, truckSize) {
+    const sorted = boxTypes.sort((a,b) => b[1] - a[1]);
+    console.log({ sorted })
+
+    const max = Math.min(truckSize, sorted.length-1);
+    let boxes = 0;
+    let space = truckSize;
+    for( let i = 0; i <= max; i ++) {
+        const el = sorted[i];
+        const stored = Math.min(space, el[0]);
+        boxes += stored * el[1];   
+        space -= stored;
+        if (space === 0) {
+            return boxes;
+        }
+    }
+
+    return boxes;
+};
