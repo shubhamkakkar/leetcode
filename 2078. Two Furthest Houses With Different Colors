@@ -1,0 +1,30 @@
+/**
+ * @param {number[]} colors
+ * @return {number}
+ */
+var maxDistance = function(colors) {
+    let l = 0;
+    let r = colors.length -1;
+    let countF = 0;
+    while ( l < r ) {
+        if (colors[l] === colors[r]) {
+            r--;
+        } else {
+            countF = r-l;
+            break;
+        }
+    }
+
+    r = colors.length -1;
+    let countB = 0;
+    while ( l < r ) {
+        if (colors[l] === colors[r]) {
+            l++;
+        } else {
+            countB = r-l;
+            break;
+        }
+    }
+
+    return Math.max(countB, countF);
+};
