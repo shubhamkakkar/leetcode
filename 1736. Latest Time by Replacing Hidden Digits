@@ -1,0 +1,51 @@
+/**
+ * @param {string} time
+ * @return {string}
+ */
+var maximumTime = function (time) {
+    const h2 = { '2': '3', '1': '9', '0': '9' };
+    const h1Max = '2';
+
+    const m2Max = '9';
+    const m1Max = { '5': '9', '4': '9', '3': '9', '2': '9', '1': '9', '0': '9' }
+
+    const h1Index = 0;
+    const h2Index = 1;
+    const m1Index = 3;
+    const m2Index = 4;
+
+    let string = '';
+
+
+    for (let i = 0; i < 5; i++) {
+        const el = time[i];
+        console.log({ el })
+        if (el === "?") {
+            switch (i) {
+                case 0: {
+                    if (Number(time[i + 1]) >= 4) {
+                        time = `1${time.substr(1)}`;
+                    } else {
+                        time = `${h1Max}${time.substr(1)}`;
+                    }
+                    break;
+                }
+                case 1: {
+                    const prevEl = time[i - 1];
+                    time = `${time.substr(0, 1)}${h2[prevEl]}${time.substr(2)}`;
+                    break;
+                }
+                case 3: {
+                    time = `${time.substr(0, 3)}5${time.substr(4)}`;
+                    break;
+                }
+                case 4: {
+                    time = `${time.substr(0, 4)}${m2Max}`;
+                    break;
+                }
+            }
+        }
+    }
+
+    return time;
+};
