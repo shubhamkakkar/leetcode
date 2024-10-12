@@ -1,0 +1,26 @@
+/**
+ * @param {string} word
+ * @return {number}
+ */
+var minTimeToType = function(word) {
+    const dict = "abcdefghijklmnopqrstuvwxyz";
+
+    let time = 0;
+    let currentWord = "a";
+    
+    for (let i = 0; i < word.length; i++) {
+        let wordToReach = word[i];
+
+        if (currentWord === word) {
+            time += 1
+        } else {
+            let travel =  Math.abs(dict.indexOf(wordToReach) - dict.indexOf(currentWord))
+            if (travel > 13) {
+                travel = 26 - travel;
+            }
+            time += (travel + 1);
+            currentWord = wordToReach;
+        }
+    }
+    return time;
+};
