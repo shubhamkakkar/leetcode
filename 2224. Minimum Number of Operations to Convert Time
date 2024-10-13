@@ -1,0 +1,31 @@
+/**
+ * @param {string} current
+ * @param {string} correct
+ * @return {number}
+ */
+var convertTime = function (current, correct) {
+    const [currentH, currentM] = current.split(':');
+    const [correctH, correctM] = correct.split(':');
+
+    let diff = Math.abs((Number(correctH) * 60 + Number(correctM)) - (Number(currentH) * 60 + Number(currentM)))
+
+    let count = 0;
+    while (diff !== 0) {
+        if (diff >= 60) {
+            diff -= 60;
+            count++;
+        } else if (diff >= 15) {
+            diff -= 15;
+            count++;
+        } else if (diff >= 5) {
+            diff -= 5;
+            count++;
+        } else if (diff >= 1) {
+            diff -= 1;
+            count++;
+        }
+    }
+
+    return count;
+
+};
