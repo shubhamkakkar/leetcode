@@ -1,0 +1,21 @@
+/**
+ * @param {number[]} cost
+ * @return {number}
+ */
+var minimumCost = function (cost) {
+    const sorted = cost.sort((a, b) => b - a);
+
+    let i = 0;
+    let sum = 0;
+    while (i < cost.length) {
+        sum += sorted[i];
+
+        if (sorted[i + 1]) {
+            sum += sorted[i + 1];
+        }
+
+        i+= 3;
+    }
+
+    return sum;
+};
