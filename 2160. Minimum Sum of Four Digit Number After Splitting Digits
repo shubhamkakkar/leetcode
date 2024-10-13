@@ -1,0 +1,9 @@
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var minimumSum = function(num) {
+    const sortedAr = String(num).split('').sort((a,b) => Number(a) - Number(b));
+
+    return Number(sortedAr[0])* 10 + Number(sortedAr[3]) + Number(sortedAr[1])*10  + Number(sortedAr[2]); 
+};
