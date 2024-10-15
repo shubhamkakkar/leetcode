@@ -1,0 +1,18 @@
+function makeSmallestPalindrome(s: string): string {
+    let ops = 0;
+    let l = s.length;
+    const n = Math.ceil(l / 2);
+    l -= 1;
+    const palindrome = [];
+
+    for (let i = 0; i < n; i++) {
+        const el = s[i] > s[l- i] ? s[l- i] : s[i]
+        if (s[i] !== s[l- i]) {
+            ops += 1
+        }
+        palindrome[i] = el
+        palindrome[l - i] = el;
+    }
+
+    return palindrome.join('');
+};
