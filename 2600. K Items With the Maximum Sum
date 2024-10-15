@@ -1,0 +1,32 @@
+var kItemsWithMaximumSum = function (numOnes, numZeros, numNegOnes, k) {
+    const minSelection = Math.min(k, numOnes);
+    let sum = minSelection
+    k -= minSelection;
+    numOnes -= minSelection;
+
+
+    if (k > 0) {
+        const minSelectionWRT0 = Math.min(k, numZeros);
+        k -= minSelectionWRT0;
+        numZeros -= minSelectionWRT0;
+    }
+
+    if (k > 0) {
+        const minSelectionWRTNegative1 = Math.min(k, numNegOnes);
+        k -= minSelectionWRTNegative1;
+        numNegOnes -= minSelectionWRTNegative1;
+
+        sum -= minSelectionWRTNegative1;
+    }
+
+    return sum;
+
+};
+
+var kItemsWithMaximumSum = function (numOnes, numZeros, numNegOnes, k) {
+    const selectOnes = Math.min(k, numOnes);
+    k -= selectOnes;
+
+    const selectNegOnes = Math.max(0, k - numZeros); // If k > numZeros, select negative ones
+    return selectOnes - selectNegOnes;
+};
