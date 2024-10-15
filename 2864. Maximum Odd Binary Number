@@ -1,0 +1,7 @@
+function maximumOddBinaryNumber(s: string): string {
+    let nums = s.split('').sort((a,b) => Number(b) - Number(a))
+    const [initailOne, ...rest] = nums;
+    nums = [...rest, initailOne];
+
+    return nums.join('')
+};
