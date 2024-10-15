@@ -1,0 +1,28 @@
+/**
+ * @param {number[]} prices
+ * @param {number} money
+ * @return {number}
+ */
+var buyChoco = function (prices, money) {
+    if (prices.length < 2) {
+        return money;
+    }
+    let chocolate1 = Infinity;
+    let chocolate2 = Infinity;
+
+    for (let i = 0;  i < prices.length; i++) {
+        const el = prices[i];
+
+        if (el < chocolate1) {
+            chocolate2 = chocolate1;
+            chocolate1 = el;
+        } else if (el < chocolate2) {
+            chocolate2 = el;
+        }
+    }
+    if ((chocolate2 + chocolate1) > money) {
+        return money;
+    }
+    return money - (chocolate2 + chocolate1);
+
+};
