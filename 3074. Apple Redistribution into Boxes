@@ -1,0 +1,15 @@
+function minimumBoxes(apple: number[], capacity: number[]): number {
+  let apples = apple.reduce((a,b) => a+b);
+  let count = 0;
+
+  const sortedCap = capacity.sort((a,b) => b-a);
+  let i = 0;  
+  while (apples > 0 && i < sortedCap.length) {
+    apples -= capacity[i];
+    i++;
+    count ++;
+  }
+
+  return count;
+
+};
