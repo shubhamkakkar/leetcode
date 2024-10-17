@@ -1,0 +1,17 @@
+function minimumPushes(word: string): number {
+    let l = word.length;
+
+    let groups = Math.floor(l / 8);
+    const remaining = l % 8;
+
+
+    let sum = 0;
+    let i = 0;
+    while (i < groups) {
+        sum += (i + 1) * 8;
+        i++
+    }
+    return sum + (remaining * (groups + 1));
+
+
+};
