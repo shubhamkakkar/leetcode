@@ -1,0 +1,15 @@
+function getLongestSubsequence(words: string[], groups: number[]): string[] {
+    if (words.length === 1) {
+        return words
+    };
+    const ar = [words[0]]
+    let n = groups.length;
+    for (let i = 1; i < n; i++) {
+        if (groups[i] !== groups[i - 1]) {
+            ar.push(words[i])
+        }
+
+    }
+    return ar;
+
+};
